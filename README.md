@@ -1,3 +1,10 @@
+# Description
+Simple leaderboard webpage for click competition, focused on rather on functionality than looks.
+
+**![img.png](img.png)**
+
+
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).

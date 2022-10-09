@@ -1,26 +1,31 @@
 import React from 'react';
-import logo from './logo.svg';
 import './App.css';
+import {BrowserRouter, Route, Routes} from "react-router-dom";
+
+import {Provider} from 'react-redux';
+
+import LeaderboardView from "./pages/LeaderboardView";
+import LeaderboardTeamClick from "./pages/LeaderboardTeamClick";
+import store from "./store";
+import {fetchLeaderboard} from "./store/leaderboard/leaderboard";
+
+store.dispatch(fetchLeaderboard())
+
 
 function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+    return (
+        <div className="App">
+            <Provider store={store}>
+                <BrowserRouter>
+                    <Routes>
+                        <Route path="/" element={<LeaderboardView/>}/>
+                        <Route path="/:team" element={<LeaderboardTeamClick/>}/>
+                        <Route path="*" element={<LeaderboardView/>}/>
+                    </Routes>
+                </BrowserRouter>
+            </Provider>
+        </div>
+    );
 }
 
 export default App;
